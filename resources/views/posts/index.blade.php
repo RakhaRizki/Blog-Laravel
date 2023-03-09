@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Rakha</title>
+    <title>CodingSkuy | Beranda</title>
 
     <!-- CDN Bootstrap -->
     <link href=" {{ asset ('Bootstrap/css/bootstrap.min.css')}} " rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -13,12 +13,13 @@
 </head>
 
 <style>
+    
     .body {
         padding: 6px;
         border-bottom: 2px solid grey;
     }
     span {
-        color: red;
+        color: blue;
     }
 
     h1 {
@@ -33,7 +34,7 @@
 
     <!-- Judul -->
 
-    <h1 class="my-5 text-center">CodingSkuy <a href=" {{url('posts/create')}} " class="btn btn-outline-warning mx-3"> + Tambah Post</a></h1>
+    <h1 class="my-5 text-center"><span>Coding</span>Skuy <a href=" {{url('posts/create')}} " class="btn btn-outline-primary mx-3"> + Tambah Post</a></h1>
 
     <!-- Isi -->
     

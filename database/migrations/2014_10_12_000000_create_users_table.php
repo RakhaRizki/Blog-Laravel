@@ -11,6 +11,7 @@ return new class extends Migration
      *
      * @return void
      */
+    // Script migrasi yang akan di run //
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
@@ -29,6 +30,7 @@ return new class extends Migration
      *
      * @return void
      */
+    // Untuk melakukan rollback dari migrasi sebelumnya //
     public function down()
     {
         Schema::dropIfExists('users');

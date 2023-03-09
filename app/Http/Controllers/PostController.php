@@ -48,7 +48,27 @@ class PostController extends Controller
     {
         $title = $request ->input('title');
         $content = $request ->input('content');
-        dd($title,$content);
+
+        $posts = storage::get('posts.txt'); 
+        $posts = explode("\n", $posts);
+
+        $new_post = [
+            count($posts) + 1,
+            $title,
+            $content,
+            date('Y-m-d H:i:s')
+        ];
+
+        $new_post = implode(',', $new_post);
+
+        array_push($posts, $new_post);
+        $posts = implode("\n", $posts);
+
+        // Nampilin datanya
+        // Untuk menuliskan ulang file posts.txt //
+        Storage::write('posts.txt', $posts );
+        return redirect('posts');
+
     }
 
     /**
