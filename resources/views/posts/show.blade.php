@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodingSkuy | Blog</title>
+    <title>{{$post->title}}</title>
 
     <!-- Local Bootstrap -->
     <link href=" {{ asset ('Bootstrap/css/bootstrap.min.css')}} " rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -18,9 +18,9 @@
 
 <div class="container">
 <article class="blog-post mt-5">
-        <h2 class="blog-post-title mb-1"> {{$post[1]}} </h2>
-        <p class="blog-post-meta"> {{$post[3]}} <a href="#">NatsumiArizu</a></p>
-        <p> {{$post[2]}} </p>
+        <h2 class="blog-post-title mb-1"> {{$post->title}} </h2>
+        <p class="blog-post-meta"> {{ date("d M Y H:i", strtotime($post->created_at)) }} </p>
+        <p> {{$post->content}} </p>
 </article>
         <a href="{{url('posts')}}" class= "btn btn-outline-danger">kembali</a>
 </div>

@@ -39,16 +39,15 @@
     <!-- Isi -->
     
     @php($number = 1)
-
     @foreach($posts as $p)
-    @php($p = explode(",", $p))
 
 <div class="card my-4">
     <div class="card-body">
-        <h5 class="card-title">{{ $p[1] }}</h5>
-        <p class="card-text">{{ $p[2] }}</p>
-        <p class="card-text"><small class ="class-muted"> Dibuat Pada {{ date("d M Y H:i", strtotime($p[3])) }}</small></p>
-        <a  href="{{url("posts/$p[0]")}}" class="btn btn-outline-success">Selengkapnya</a>
+        <h5 class="card-title">{{ $p->title }}</h5>
+        <p class="card-text">{{ $p->content }}</p>
+        <p class="card-text"><small class ="class-muted"> Dibuat Pada {{ date("d M Y H:i", strtotime($p->created_at)) }}</small></p>
+        <a  href="{{url("posts/$p->id")}}" class="btn btn-outline-success">Selengkapnya</a>
+        <a  href="{{url("posts/$p->id/edit")}}" class="btn btn-outline-primary">Edit</a>
     </div>
 </div>
 

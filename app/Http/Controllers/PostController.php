@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -15,11 +16,8 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = storage::get('posts.txt'); 
-        $posts = explode("\n", $posts);
-    
-        // echo $posts;
-        // exit;
+        $posts = DB::table('posts')
+                 ->get();
 
         $data = [
            'posts' => $posts
@@ -49,24 +47,13 @@ class PostController extends Controller
         $title = $request ->input('title');
         $content = $request ->input('content');
 
-        $posts = storage::get('posts.txt'); 
-        $posts = explode("\n", $posts);
+        DB::table('posts')->insert([
+            'title' => $title,
+            'content' => $content,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
 
-        $new_post = [
-            count($posts) + 1,
-            $title,
-            $content,
-            date('Y-m-d H:i:s')
-        ];
-
-        $new_post = implode(',', $new_post);
-
-        array_push($posts, $new_post);
-        $posts = implode("\n", $posts);
-
-        // Nampilin datanya
-        // Untuk menuliskan ulang file posts.txt //
-        Storage::write('posts.txt', $posts );
         return redirect('posts');
 
     }
@@ -79,16 +66,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $posts = storage::get('posts.txt'); 
-        $posts = explode("\n", $posts);
-        $selected_post = Array();
-
-        foreach ($posts as $post){
-            $post = explode(",", $post);
-            if($post[0] == $id){
-                $selected_post = $post;
-            }
-        }
+        $selected_post = DB::table('posts')
+            ->where('id', $id)
+            ->first();
 
         $view_data = [
             'post' => $selected_post
@@ -105,6 +85,17 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+
+    $selected_post = DB::table('posts')
+                    ->select('id', 'title', 'content', 'updated_at' )
+                    ->where('id', $id)
+                    ->first();
+
+    $view_data = [
+        'post' => $selected_post
+    ];
+
+    return view ('posts.edit', $view_data);
     
     }
 
