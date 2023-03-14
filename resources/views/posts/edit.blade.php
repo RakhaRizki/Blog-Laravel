@@ -40,14 +40,19 @@
 
 <div class="mb-3">
   <label for="content" class="form-label">Konten</label>
-  <textarea class="form-control" id="content" rows="3" name="content" value="{{ $post->content }}" required ></textarea> 
+  <textarea class="form-control" id="content" rows="3" name="content" value="{{ $post->content }}" required > {{ $post->content }} </textarea> 
 </div>
 
 <!-- Button -->
 <button type="submit" class="btn btn-outline-primary">simpan</button>
-<a href="{{url('posts')}}" class= "btn btn-outline-danger">kembali</a>
+<a href="{{url('posts')}}" class= "btn btn-outline-success">kembali</a>
 
-</div>
+<form method="POST" action="{{ url("posts/$post->id") }}">
+      @method('DELETE')
+      @csrf
+      <button type="submit" class="btn btn-outline-danger ">Hapus</button>
+</form>
+
   </form>
 
     <!-- CDN Bootstrap -->
