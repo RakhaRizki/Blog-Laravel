@@ -17,6 +17,7 @@ class PostController extends Controller
     {
 
         $posts = DB::table('posts')
+                 ->where('active', true)
                  ->get();
 
         $data = [
