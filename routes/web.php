@@ -55,9 +55,14 @@ Route::get('posts/{id}', [PostController::class, 'show']);
 
 // Untuk menghandle apa yang diinputkan di dalam create //
 Route::post('posts', [PostController::class, 'store']);
+
+// Untuk Mengedit //
 Route::get('posts/{id}/edit', [PostController::class, 'edit']);
 Route::patch('posts/{id}', [PostController::class, 'update']);
+
+// Untuk Menghapus Blog //
 Route::delete('posts/{id}', [PostController::class, 'destroy']);
+
 
 // latihan //
 
