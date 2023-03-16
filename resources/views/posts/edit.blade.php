@@ -47,13 +47,13 @@
 <button type="submit" class="btn btn-outline-primary">simpan</button>
 <a href="{{url('posts')}}" class= "btn btn-outline-success">kembali</a>
 
-<form method="POST" action="{{ url("posts/$post->id") }}">
+  </form>
+
+  <form method="POST" action="{{ url("posts/$post->id") }}">
       @method('DELETE')
       @csrf
-      <button type="submit" class="btn btn-outline-danger ">Hapus</button>
+      <button type="submit" class="btn btn-outline-danger my-2 ">Hapus!</button>
 </form>
-
-  </form>
 
     <!-- CDN Bootstrap -->
     <script src="{{ asset ( '/Bootstrapjs/bootstrap.bundle.min.js' )}}" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
