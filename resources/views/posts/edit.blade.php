@@ -29,7 +29,7 @@
 
     <!-- Form -->
 
-  <form method= "post" action= "{{ url("posts/{$post->id}") }}" method="post" >
+  <form method= "post" action= "{{ url("posts/{$post->slug}") }}" method="post" >
   @method('PATCH')
   @csrf 
 
@@ -49,7 +49,7 @@
 
   </form>
 
-  <form method="POST" action="{{ url("posts/$post->id") }}">
+  <form method="POST" action="{{ url("posts/$post->slug") }}">
       @method('DELETE')
       @csrf
       <button type="submit" class="btn btn-outline-danger my-2 ">Hapus!</button>

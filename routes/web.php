@@ -43,8 +43,8 @@ Route::get('posts/{slug}', [PostController::class, 'show']);
 Route::post('posts', [PostController::class, 'store']);
 
 // Untuk Mengedit //
-Route::get('posts/{id}/edit', [PostController::class, 'edit']);
-Route::patch('posts/{id}', [PostController::class, 'update']);
+Route::get('posts/{slug}/edit', [PostController::class, 'edit']);
+Route::patch('posts/{slug}', [PostController::class, 'update']);
 
 // Untuk Menghapus Blog //
 Route::delete('posts/{id}', [PostController::class, 'destroy']);

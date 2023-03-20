@@ -116,20 +116,20 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
 
         $title = $request->input('title');
         $content = $request->input('content');
 
-        post::SelectById($id)
+        post::where('slug', $slug)
               ->update([
                  'title' => $title,
                  'content' => $content,
                  'updated_at' => date('Y-m-d H:i:s')
             ]);
 
-        return redirect("posts/{$id}");
+        return redirect("posts/$slug");
 
     }
 
