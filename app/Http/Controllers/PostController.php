@@ -20,10 +20,16 @@ class PostController extends Controller
     
         // $posts = post::where('active', true)->get();
 
-        $posts = post::active()->get();
+        $posts = Post::status(true)->get();
+        $total_active = $posts->count();
+        $total_nonActive = Post::status (false)->count();
+        $total_dihapus = Post::onlyTrashed()->count();
 
         $data = [
-           'posts' => $posts
+           'posts' => $posts,
+           'total_active' => $total_active,
+           'total_nonActive' => $total_nonActive,
+           'total_dihapus' => $total_dihapus
         ];
 
         return view('posts.index', $data);
@@ -50,15 +56,14 @@ class PostController extends Controller
         $title = $request ->input('title');
         $content = $request ->input('content');
 
-        post::insert([
+        post::create([
             'title' => $title,
-            'content' => $content,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'content' => $content
+            // 'created_at' => date('Y-m-d H:i:s'),
+            // 'updated_at' => date('Y-m-d H:i:s')
         ]);
 
         return redirect('posts');
-
     }
 
     /**
@@ -74,9 +79,9 @@ class PostController extends Controller
         $total_comments = $selected_post->total_comments();
 
         $view_data = [
-            'post' => $selected_post,
-            'comments' => $comments,
-            'total_comments' =>$total_comments
+            'post'            => $selected_post,
+            'comments'        => $comments,
+            'total_comments'  =>$total_comments
         ];
 
         return view ('posts.show', $view_data);

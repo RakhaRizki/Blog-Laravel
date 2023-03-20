@@ -11,7 +11,12 @@ class post extends Model
     use HasFactory;
     use SoftDeletes;
 
-    // Mendekrasikan  Relasi 1 blog bisa memiliki banyak komen hasMany //
+    protected $fillable = [
+        'title',
+        'content',
+    ];
+    
+    // Mendekrasikan Relasi 1 blog bisa memiliki banyak komen hasMany //
     public function comments() {
         return $this->hasMany(comment::class);
     }
@@ -20,14 +25,23 @@ class post extends Model
         return $this->comments()->count();
     }
 
-    // Index //
-    public function scopeActive($query) {
-        return $query-> where('active', true);
+    public function scopeStatus($query, $bool) {
+        return $query-> where('active', $bool);
     }
 
     // Show //
     public function scopeSelectById($query, $id) {
         return $query -> where('id', $id);
+    }
+
+    // Membuat URI Slug //
+    public static function boot(){
+        parent::boot();
+
+        static::creating(function($post){
+            $post->slug = str_replace(' ','-',
+            $post->title);
+        });
     }
 
 }

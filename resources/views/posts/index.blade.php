@@ -35,12 +35,15 @@
     <!-- Judul -->
 
     <h1 class="my-5 text-center"><span>Coding</span>Skuy <a href=" {{url('posts/create')}} " class="btn btn-outline-primary mx-3"> + Tambah Post</a> 
-    <a href=" {{url('posts/trash')}} " class="btn btn-outline-danger"> Ini Histori </a></h1></h1>
-   
+    <a href=" {{url('posts/trash')}} " class="btn btn-outline-danger"> Ini Histori </a></h1>
+    </h1>
+
+    <p class="text-muted text-center"> Total Postingan Aktif : <span class="badge bg-success"> {{ $total_active }} </span> Total postingan non Aktif : <span class="badge bg-warning"> {{ $total_nonActive }} </span> Total postingan dihapus : <span class="badge bg-danger"> {{ $total_dihapus }} </span> </p>
+    </p>
 
     <!-- Isi -->
     
-    @php($number = 1)
+    
     @foreach($posts as $p)
 
 <div class="card my-4">
@@ -53,7 +56,7 @@
     </div>
 </div>
 
-    @php($number++)
+    
     @endforeach
 
 </div>

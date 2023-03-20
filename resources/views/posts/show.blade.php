@@ -34,6 +34,8 @@
         </div>
         @endforeach
 
+        <!-- End Komen -->
+
 </article>
         <a href="{{url('posts')}}" class= "btn btn-outline-danger">kembali</a>
 </div>

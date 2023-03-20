@@ -32,20 +32,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('tes', function() {
-//     echo "Kamu Berhasil";
-// });
-
-// Route::get('ikan', function(){
-//     echo "kamu berhasil";
-// });
-
-// Route::get('sapi','App\Http\Controllers\HelloController@index');
-
-// Route::get('datang', [HelloController::class,'Welcome']);
-
-// Route::resource('posts', PostController::class);
-
 // Main Project "Posts //
 
 Route::get('posts', [PostController::class, 'index']);
@@ -62,7 +48,6 @@ Route::patch('posts/{id}', [PostController::class, 'update']);
 
 // Untuk Menghapus Blog //
 Route::delete('posts/{id}', [PostController::class, 'destroy']);
-
 
 // latihan //
 
