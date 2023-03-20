@@ -72,11 +72,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $selected_post = post::SelectById($id)->first();
-        $comments = $selected_post->comments()->limit(2)->get();
-        $total_comments = $selected_post->total_comments();
+        $selected_post = post::where('slug', $slug)
+        ->first();  
+        $comments = $selected_post->comments()
+        ->get();
+        $total_comments = $selected_post
+        ->total_comments();
 
         $view_data = [
             'post'            => $selected_post,
@@ -93,10 +96,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
 
-    $selected_post = post::SelectById($id)->first();
+    $selected_post = post::where('slug', $slug)->first();
 
     $view_data = [
         'post' => $selected_post

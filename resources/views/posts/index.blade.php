@@ -51,8 +51,8 @@
         <h5 class="card-title">{{ $p->title }}</h5>
         <p class="card-text">{{ $p->content }}</p>
         <p class="card-text"><small class ="class-muted"> Dibuat Pada {{ date("d M Y H:i", strtotime($p->created_at)) }}</small></p>
-        <a  href="{{url("posts/$p->id")}}" class="btn btn-outline-success">Selengkapnya</a>
-        <a  href="{{url("posts/$p->id/edit")}}" class="btn btn-outline-primary">Edit</a>
+        <a  href="{{url("posts/$p->slug")}}" class="btn btn-outline-success">Selengkapnya</a>
+        <a  href="{{url("posts/$p->slug/edit")}}" class="btn btn-outline-primary">Edit</a>
     </div>
 </div>
 
