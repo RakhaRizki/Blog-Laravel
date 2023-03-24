@@ -1,25 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+@extends('layouts.app')
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodingSkuy | Buat Postingan</title>
+@section('title')
+blog
+@endsection
 
-     <!-- CDN Bootstrap -->
-     <link href=" {{ asset ('Bootstrap/css/bootstrap.min.css')}} " rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
-     <style>
-
-        h1{
-            font-weight: bold;
-        }
-
-     </style>
-
-</head>
-<body>
+@section('content')
 
 <div class="container">
 
@@ -55,9 +40,4 @@
       <button type="submit" class="btn btn-outline-danger my-2 ">Hapus!</button>
 </form>
 
-    <!-- CDN Bootstrap -->
-    <script src="{{ asset ( '/Bootstrapjs/bootstrap.bundle.min.js' )}}" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
-</body>
-
-</html>
+@endsection
