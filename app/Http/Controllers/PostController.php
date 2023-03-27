@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -17,8 +18,10 @@ class PostController extends Controller
 
     public function index()
     {
-    
-        // $posts = post::where('active', true)->get();
+
+        if(!Auth::check()){
+            return redirect('login');
+        }
 
         $posts = Post::status(true)->get();
         $total_active = $posts->count();
@@ -42,6 +45,11 @@ class PostController extends Controller
      */
     public function create()
     {
+
+        if(!Auth::check()){
+            return redirect('login');
+        }
+
         return view('posts.create');
     }
 
@@ -53,6 +61,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
+        if(!Auth::check()){
+            return redirect('login');
+        }
+
         $title = $request ->input('title');
         $content = $request ->input('content');
 
@@ -74,6 +87,11 @@ class PostController extends Controller
      */
     public function show($slug)
     {
+
+        if(!Auth::check()){
+            return redirect('login');
+        }
+
         $selected_post = post::where('slug', $slug)
         ->first();  
         $comments = $selected_post->comments()
@@ -99,6 +117,10 @@ class PostController extends Controller
     public function edit($slug)
     {
 
+        if(!Auth::check()){
+            return redirect('login');
+        }
+
     $selected_post = post::where('slug', $slug)->first();
 
     $view_data = [
@@ -118,6 +140,10 @@ class PostController extends Controller
      */
     public function update(Request $request, $slug)
     {
+
+        if(!Auth::check()){
+            return redirect('login');
+        }
 
         $title = $request->input('title');
         $content = $request->input('content');
@@ -141,6 +167,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
+
+        if(!Auth::check()){
+            return redirect('login');
+        }
         
     post::SelectById($id)->delete();
 
@@ -150,6 +180,10 @@ class PostController extends Controller
 
     
     public function trash() {
+
+        if(!Auth::check()){
+            return redirect('login');
+        }
 
         $trash_item = post::onlyTrashed()->get();
 

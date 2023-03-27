@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>BLOG-KU | @yield('title')</title>
+    <title>BlogSkuy | @yield('title')</title>
 
         {{--* bootstrap css --}}
         <link href="{{ asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">

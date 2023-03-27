@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\HelloController;
+use  App\Http\Controllers\AuthController;
 use  App\Http\Controllers\PostController;
 use  App\Http\Controllers\FoodController;
 
@@ -34,6 +35,11 @@ Route::get('/', function () {
 
 // Main Project "Posts //
 
+// Login / Register //
+Route::get('login', [AuthController::class, 'login']);
+Route::post('login', [AuthController::class, 'authenticate']);
+Route::get('logout', [AuthController::class, 'logout']);
+
 Route::get('posts', [PostController::class, 'index']);
 Route::get('posts/create', [PostController::class, 'create']);
 Route::get('posts/trash', [PostController::class, 'trash']);
@@ -48,10 +54,5 @@ Route::patch('posts/{slug}', [PostController::class, 'update']);
 
 // Untuk Menghapus Blog //
 Route::delete('posts/{id}', [PostController::class, 'destroy']);
-
-// latihan //
-
-// Route::get('food', [FoodController::class, 'index']);
-
 
 
