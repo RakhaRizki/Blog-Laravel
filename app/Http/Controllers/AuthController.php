@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Hash;
+
 
 class AuthController extends Controller
 {
   
-    public function login()
-
-    {
+    public function login() {
         return view('auth.login');
     }
 
-    public function authenticate(Request $request) 
-    {
+    public function authenticate(Request $request) {
 
         // Hanya menerima name dengan nama email dan password //
         $credentials = $request->only('email', 'password');
@@ -27,19 +27,41 @@ class AuthController extends Controller
         if(Auth::attempt($credentials)){
             return redirect('posts');
         }else{
-            return redirect('login')->with('error_messange', 'Wrong Email And Password');
+            return redirect('login')->with('error_message', 'Wrong Email And Password');
         }
 
     }
 
-    public function logout()
-    {
+    public function logout() {
 
         session::flush();
         Auth::logout();
 
-        return redirect('login');
+        return redirect('login')->with('logout', 'Success');
 
     }
 
+    public function register_form() {
+
+        return view('auth.register');
+
+    }
+
+    public function register(Request $request) {
+        
+        $request->validate([
+            'name' => 'required|min:4|max:20',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8|max:10|confirmed',
+        ]);
+
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+        ]);
+
+        return redirect('login');
+
+    }
 }

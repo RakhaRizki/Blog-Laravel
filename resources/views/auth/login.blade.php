@@ -16,9 +16,9 @@
  <form method="POST" action=" {{ url("login") }} ">
  @csrf
 
- @if (session()->has('error_messenge'))
+ @if (session()->has('error_message'))
  <div class="alert alert-danger">
-     {{ session()->get('error_messenge') }}
+     {{ session()->get('error_message') }}
  </div>
  @endif
 
@@ -30,7 +30,7 @@
     <label for="exampleInputPassword1" class="form-label">Password</label>
     <input type="password" class="form-control" id="exampleInputPassword1" name="password">
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Login</button>
 </form>
 
  </div>
