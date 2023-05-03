@@ -13,7 +13,7 @@
 
 <div class="card-body">
 
- <form method="POST" action=" {{ url("register") }} ">
+ <form method="POST" action=" {{ route("register") }} ">
  @csrf
 
  @if (session()->has('error_message'))

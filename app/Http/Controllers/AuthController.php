@@ -27,7 +27,7 @@ class AuthController extends Controller
         if(Auth::attempt($credentials)){
             return redirect('posts');
         }else{
-            return redirect('login')->with('error_message', 'Wrong Email And Password');
+            return redirect('login')->with('error_message', 'Wrong email or password');
         }
 
     }
