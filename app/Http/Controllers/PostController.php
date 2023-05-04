@@ -19,9 +19,9 @@ class PostController extends Controller
     public function index()
     {
 
-        if(!Auth::check()){
-            return redirect('login');
-        }
+        // if(!Auth::check()){
+        //     return redirect('login');
+        // }
 
         $posts = Post::status(true)->get();
         $total_active = $posts->count();

@@ -17,34 +17,24 @@ use  App\Http\Controllers\FoodController;
 |
 */
 
-// Fyi (For Your Informations)
-// Host = facebook.com , instagram.com , twitter.com ;
-// Enpoint = Facebook.com/Beranda , instagram.com/pencarian , Twitter.com/profile ;
-// URI / Enpoint / Alamat = '/' ; 
-// Static = Data yang Beraturan , Dynamic = Tidak Beraturan ;
-// di blade synatx ini artinya {{Code}} sama seperti echo ;
-// @php() 
-// DD = Dump & Die DDD = Dump & Die & Debug
-// ' = Hanya String saja , " = Bisa berbeda tipe data misalnya sting + variabel 
-// CSRF = Untuk menindentifikasi Request yang ingin masuk ke server // 
-// My Project Client - CSRF - My Project Server (My project client akan di accept soalnya ada tokennya yaitu CSRF) 
-
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function(){
+    return view ('index');
 });
 
-// Main Project "Posts //
-
 // Login / Register //
-Route::get('login', [AuthController::class, 'login']);
-Route::post('login', [AuthController::class, 'authenticate']);
 
-Route::get('logout', [AuthController::class, 'logout']);
+// Route::get('login', [AuthController::class, 'login']);
+// Route::post('login', [AuthController::class, 'authenticate']);
+
+// Route::get('logout', [AuthController::class, 'logout']);
 
 // Route::get('register', [AuthController::class,'register_form'])->name('register');
 // Route::post('register', [AuthController::class,'register']);
 
-Route::get('posts', [PostController::class, 'index']);
+// Route Content //
+
+Route::get('posts', [PostController::class, 'index']) ->middleware('is_admin');
+
 Route::get('posts/create', [PostController::class, 'create']);
 Route::get('posts/trash', [PostController::class, 'trash']);
 Route::get('posts/{slug}', [PostController::class, 'show']);

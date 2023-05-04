@@ -13,13 +13,21 @@
           <input type="search" class="form-control form-control-dark text-bg-white" placeholder="Search Sini" aria-label="Search">
         </form>
 
-        @if(!Auth::check())
-        <a href= " {{ url("login") }} " class="btn btn-outline-light me-2"> Log-In </a>
+        @guest
+        <!-- Klo user belum login maka web akan menampilkan tombol login dan register -->
+        <a href= " {{ route("login") }} " class="btn btn-outline-light me-2"> Log-In </a>
+        <a href= " {{ route("register") }} " class="btn btn-outline-light me-2"> Register </a>
         @else()
+
+        <!-- klo user udah login maka web akan menampikan nama akunnya dan tombol log -->
         <a href= " # " class="btn btn-outline-light me-2"> {{ Auth::user()->name }} </a>
-        <a href= " {{ url("logout") }} " class="btn btn-outline-light me-2"> Log-Out </a>
-        @endif
-        <a href= " {{ url("register") }} " class="btn btn-outline-light me-2"> Register </a>
+ 
+        <a href="{{ route("logout")}}" onclick="event.preventDefault(); document.getElementById('form-logout').submit();" class="btn btn-outline-light me-2">Logout</a>
+          <form action="{{ route('logout') }}" method="post" id="form-logout">
+            @csrf
+          </form>
+          
+        @endguest
 
         </div>
       </div>
